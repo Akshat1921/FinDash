@@ -11,31 +11,31 @@ const renderTable = (
   data: Record<string, any>[]
 ) => (
   <div>
-    <h3 className="text-2xl font-bold text-blue-700 dark:text-blue-300 mb-4">
+    <h3 className="text-2xl font-bold text-white mb-4">
       {title}
     </h3>
     {data.map((entry, idx) => (
       <div
         key={idx}
-        className="mb-8 p-4 bg-gray-50 dark:bg-gray-800 rounded-lg shadow"
+        className="mb-8 p-4 bg-white/10 backdrop-blur-lg rounded-xl border border-white/20 shadow-lg"
       >
-        <h4 className="text-lg font-semibold mb-2 text-blue-500">
+        <h4 className="text-lg font-semibold mb-2 text-white/90">
           Year: {entry.year || `#${idx + 1}`}
         </h4>
-        <table className="min-w-full border border-gray-300 dark:border-gray-700 rounded-lg">
+        <table className="min-w-full border border-white/20 rounded-lg">
           <tbody>
             {fields
               .filter((key) => entry[key] !== undefined)
               .map((key) => (
                 <tr key={key}>
-                  <td className="px-4 py-2 border-b border-gray-200 dark:border-gray-700 font-semibold capitalize">
+                  <td className="px-4 py-2 border-b border-white/20 font-semibold capitalize text-white/90">
                     {key
                       .replace(/([A-Z])/g, " $1")
                       .replace(/_/g, " ")
                       .replace(/\s+/g, " ")
                       .trim()}
                   </td>
-                  <td className="px-4 py-2 border-b border-gray-200 dark:border-gray-700">
+                  <td className="px-4 py-2 border-b border-white/20 text-white/80">
                     {entry[key] === undefined || entry[key] === "nan"
                       ? "N/A"
                       : entry[key]}

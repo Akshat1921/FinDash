@@ -10,8 +10,8 @@ export const SearchBar: React.FC<SearchBarProps> = ({onSearchChange}) => {
           <div className="relative mb-4 flex w-full flex-wrap items-stretch">
               <input
                   type="search"
-                  className="relative m-0 block flex-auto rounded border border-solid border-neutral-300 bg-transparent bg-clip-padding px-3 py-[0.25rem] text-base font-normal leading-[1.6] text-neutral-700 outline-none transition duration-200 ease-in-out focus:z-[3] focus:border-primary focus:text-neutral-700 focus:shadow-[inset_0_0_0_1px_rgb(59,113,202)] focus:outline-none dark:border-neutral-600 dark:text-neutral-200 dark:placeholder:text-neutral-200 dark:focus:border-primary"
-                  placeholder="Search"
+                  className="relative m-0 block flex-auto rounded border border-white/30 bg-white/15 backdrop-blur-md bg-clip-padding px-3 py-[0.25rem] text-base font-normal leading-[1.6] text-white outline-none transition duration-200 ease-in-out focus:z-[3] focus:border-white/50 focus:text-white focus:ring-2 focus:ring-white/40 placeholder-white/70 shadow-lg"
+                  placeholder="Search stocks..."
                   aria-label="Search"
                   aria-describedby="button-addon2" 
                   onChange={(e)=> onSearchChange(e.target.value)}
@@ -19,7 +19,7 @@ export const SearchBar: React.FC<SearchBarProps> = ({onSearchChange}) => {
                 
               {/* <!--Search icon--> */}
               <span
-                  className="input-group-text flex items-center whitespace-nowrap rounded px-3 py-1.5 text-center text-base font-normal text-neutral-700 dark:text-neutral-200"
+                  className="input-group-text flex items-center whitespace-nowrap rounded px-3 py-1.5 text-center text-base font-normal text-white"
                   id="basic-addon2">
                   <svg
                       xmlns="http://www.w3.org/2000/svg"

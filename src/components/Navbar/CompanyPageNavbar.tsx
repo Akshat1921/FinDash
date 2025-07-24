@@ -1,5 +1,6 @@
 // CompanyPageNavbar.tsx
 import React from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 
 type Props = {
   selectedTab: string;
@@ -7,6 +8,18 @@ type Props = {
 };
 
 const CompanyPageNavbar: React.FC<Props> = ({ selectedTab, setSelectedTab }) => {
+  const navigate = useNavigate();
+  const isAuthenticated = localStorage.getItem('authToken');
+
+  const handleAuthAction = () => {
+    if (isAuthenticated) {
+      localStorage.removeItem('authToken');
+      navigate('/login');
+    } else {
+      navigate('/login');
+    }
+  };
+
   const tabs = [
     { key: "overview", label: "Overview" },
     { key: "balance-sheet", label: "Balance Sheet" },
@@ -15,28 +28,60 @@ const CompanyPageNavbar: React.FC<Props> = ({ selectedTab, setSelectedTab }) => 
   ];
 
   return (
-    <nav className="bg-white dark:bg-gray-900 fixed w-full z-20 top-0 left-0 border-b border-gray-200 dark:border-gray-600 shadow">
+    <nav className="bg-white/10 backdrop-blur-xl fixed w-full z-20 top-0 left-0 border-b border-white/20 shadow-2xl">
       <div className="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-        <a href="/stocks" className="flex items-center space-x-3 rtl:space-x-reverse">
-          <span className="self-center text-2xl font-bold whitespace-nowrap dark:text-white text-blue-700">
+        <Link to={isAuthenticated ? "/dashboard" : "/"} className="flex items-center space-x-3 rtl:space-x-reverse">
+          <span className="self-center text-2xl font-bold whitespace-nowrap text-white">
             FinDash
           </span>
-        </a>
+        </Link>
         <div className="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
-          <button
-            type="button"
-            className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-          >
-            Sign In
-          </button>
+          {isAuthenticated ? (
+            <div className="flex items-center space-x-4">
+              <Link 
+                to="/dashboard" 
+                className="text-white hover:text-purple-200 
+                         px-3 py-2 rounded-md text-sm font-medium transition duration-200"
+              >
+                Dashboard
+              </Link>
+              <button 
+                type="button" 
+                onClick={handleAuthAction}
+                className="text-white bg-red-500/30 hover:bg-red-600/40 focus:ring-4 focus:outline-none focus:ring-red-300/50 
+                         font-medium rounded-lg text-sm px-4 py-2 text-center backdrop-blur-sm border border-red-500/30 transition duration-200"
+              >
+                Logout
+              </button>
+            </div>
+          ) : (
+            <div className="flex items-center space-x-2">
+              <Link 
+                to="/login"
+                className="text-white hover:text-purple-200 
+                         px-3 py-2 rounded-md text-sm font-medium transition duration-200"
+              >
+                Sign In
+              </Link>
+              <Link 
+                to="/signup"
+                className="text-white bg-purple-500/30 hover:bg-purple-600/40 focus:ring-4 focus:outline-none focus:ring-purple-300/50 
+                         font-medium rounded-lg text-sm px-4 py-2 text-center backdrop-blur-sm border border-purple-500/30 transition duration-200"
+              >
+                Sign Up
+              </Link>
+            </div>
+          )}
         </div>
         <div className="items-center justify-between hidden w-full md:flex md:w-auto md:order-1">
-          <ul className="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+          <ul className="flex flex-col p-4 md:p-0 mt-4 font-medium border border-white/20 rounded-lg bg-white/10 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-transparent backdrop-blur-sm">
             {tabs.map((tab) => (
               <li key={tab.key}>
                 <button
-                  className={`block py-2 px-3 rounded md:bg-transparent md:p-0 ${
-                    selectedTab === tab.key ? "text-blue-700 dark:text-blue-300 font-bold" : "text-gray-700 dark:text-gray-300"
+                  className={`block py-2 px-4 rounded-lg md:bg-transparent md:p-2 transition-all duration-200 ${
+                    selectedTab === tab.key 
+                      ? "text-white font-bold bg-white/20 backdrop-blur-sm border border-white/30" 
+                      : "text-white/80 hover:text-white hover:bg-white/10 backdrop-blur-sm"
                   }`}
                   onClick={() => setSelectedTab(tab.key)}
                 >

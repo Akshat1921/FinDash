@@ -32,18 +32,18 @@ export const CompanyOverviewSection: React.FC<CompanyOverviewProps> = ({ data })
     const companyInfoDisplay = { ...companyInfo, address };
 
     const renderTable = (title: string, fields: string[], sectionData: Record<string, any>) => (
-        <div className="mb-8 p-4 bg-gray-50 dark:bg-gray-800 rounded-lg shadow">
-        <h3 className="text-xl font-semibold mt-2 mb-2 text-blue-700 dark:text-blue-300">{title}</h3>
-        <table className="min-w-full border border-gray-300 dark:border-gray-700 rounded-lg">
+        <div className="mb-8 p-4 bg-white/10 backdrop-blur-lg rounded-xl border border-white/20 shadow-lg">
+        <h3 className="text-xl font-semibold mt-2 mb-2 text-white">{title}</h3>
+        <table className="min-w-full border border-white/20 rounded-lg">
             <tbody>
             {fields
                 .filter((key) => sectionData[key] !== undefined)
                 .map((key) => (
                 <tr key={key}>
-                    <td className="px-4 py-2 border-b border-gray-200 dark:border-gray-700 font-semibold capitalize">
+                    <td className="px-4 py-2 border-b border-white/20 font-semibold capitalize text-white/90">
                     {key.replace(/([A-Z])/g, " $1")}
                     </td>
-                    <td className="px-4 py-2 border-b border-gray-200 dark:border-gray-700">
+                    <td className="px-4 py-2 border-b border-white/20 text-white/80">
                     {String(sectionData[key])}
                     </td>
                 </tr>
