@@ -177,7 +177,7 @@ const PortfolioPage: React.FC = () => {
         {/* Add Stocks Button */}
         <div className="mb-6">
           <Link 
-            to="/stocks" 
+            to="/stocks?portfolio=true" 
             className="inline-flex items-center px-6 py-3 bg-red-500/20 hover:bg-red-500/30 text-white hover:text-white font-semibold rounded-lg transition-all duration-200 border border-red-400/50 backdrop-blur-sm shadow-lg"
           >
             <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -226,9 +226,12 @@ const PortfolioPage: React.FC = () => {
                     <tr key={stock.id} className="hover:bg-white/10 transition-colors">
                       <td className="px-6 py-4 whitespace-nowrap">
                         <div>
-                          <div className="text-sm font-bold text-white bg-blue-500/20 px-2 py-1 rounded border border-blue-400/30 inline-block">
+                          <Link 
+                            to={`/stocks/${stock.ticker}`}
+                            className="text-sm font-bold text-white bg-blue-500/20 px-2 py-1 rounded border border-blue-400/30 inline-block hover:bg-blue-500/30 transition-colors cursor-pointer"
+                          >
                             {stock.ticker}
-                          </div>
+                          </Link>
                           <div className="text-sm text-white/80 mt-1">
                             {stock.companyName}
                           </div>
@@ -320,7 +323,7 @@ const PortfolioPage: React.FC = () => {
               </p>
               <div className="mt-6">
                 <Link
-                  to="/stocks"
+                  to="/stocks?portfolio=true"
                   className="inline-flex items-center px-6 py-3 border border-red-400/50 shadow-lg text-sm font-semibold rounded-lg bg-red-500/20 hover:bg-red-500/30 text-white hover:text-white backdrop-blur-sm transition-all duration-200"
                 >
                   <svg className="-ml-1 mr-2 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

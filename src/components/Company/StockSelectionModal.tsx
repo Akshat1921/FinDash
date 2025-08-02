@@ -1,10 +1,17 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import { usePortfolio } from '../../context/PortfolioContext';
 
 interface StockSelectionModalProps {
   isOpen: boolean;
   onClose: () => void;
   stock: {symbol: string, name: string} | null;
+}
+
+interface ApiResponse {
+  success: boolean;
+  error?: string;
+  message?: string;
 }
 
 const StockSelectionModal: React.FC<StockSelectionModalProps> = ({
@@ -19,6 +26,7 @@ const StockSelectionModal: React.FC<StockSelectionModalProps> = ({
   });
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
+  const [error, setError] = useState('');
 
   const { addStock, isStockSelected, getSelectedStock, removeStock } = usePortfolio();
 
@@ -31,16 +39,19 @@ const StockSelectionModal: React.FC<StockSelectionModalProps> = ({
       setQuantity(selectedStock.quantity);
       setPurchaseDate(selectedStock.purchaseDate);
     }
-  }, [isSelected, selectedStock]);
+    // Clear error when modal opens
+    setError('');
+  }, [isSelected, selectedStock, isOpen]);
 
   // NOW we can do early returns after all hooks are called
   if (!isOpen || !stock) return null;
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
 
     try {
+      // Add to local cart (portfolio context)
       const stockData = {
         stockSymbol: stock.symbol,
         companyName: stock.name,
@@ -49,15 +60,35 @@ const StockSelectionModal: React.FC<StockSelectionModalProps> = ({
       };
 
       addStock(stockData);
+      
+      // Make API call to pre-fetch financial data for the stock (background)
+      try {
+        await axios.get(`http://localhost:8081/stocks/get_all_financials/${stock.symbol}`);
+        console.log(`✅ Financial data fetched for ${stock.symbol}`);
+      } catch (apiError: any) {
+        // If GET fails, try POST fallback
+        if (apiError.response?.status === 404) {
+          try {
+            await axios.post(`http://localhost:8081/stocks/add_financials/${stock.symbol}`);
+            console.log(`✅ Financial data added for ${stock.symbol} via fallback`);
+          } catch (fallbackError) {
+            console.log(`⚠️ Failed to fetch financial data for ${stock.symbol}`);
+          }
+        } else {
+          console.log(`⚠️ Failed to fetch financial data for ${stock.symbol}`);
+        }
+      }
+      
       setSuccess(true);
       
       // Show success message briefly before closing
       setTimeout(() => {
         onClose();
         setSuccess(false);
-      }, 1000);
-    } catch (error) {
-      console.error('Error adding stock:', error);
+      }, 1500);
+    } catch (error: any) {
+      console.error('Error adding stock to cart:', error);
+      setError(error.message || 'Failed to add stock to cart');
     } finally {
       setLoading(false);
     }
@@ -106,6 +137,13 @@ const StockSelectionModal: React.FC<StockSelectionModalProps> = ({
               <h4 className="font-medium text-white">{stock.symbol}</h4>
               <p className="text-sm text-white/70">{stock.name}</p>
             </div>
+
+            {/* Error Message */}
+            {error && (
+              <div className="mb-4 p-3 bg-red-500/20 backdrop-blur-sm border border-red-500/30 rounded-lg">
+                <p className="text-red-300 text-sm">{error}</p>
+              </div>
+            )}
 
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>

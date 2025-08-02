@@ -119,7 +119,7 @@ const Stocks: React.FC = () => {
                       Selected: {selectedStocks.length} stocks
                     </span>
                     <button 
-                      onClick={() => navigate('/portfolio')}
+                      onClick={() => navigate('/cart')}
                       className="px-4 py-2 bg-white/40 hover:bg-white/50 text-white rounded-lg transition-colors backdrop-blur-sm border border-white/30"
                     >
                       View Cart ({selectedStocks.length})

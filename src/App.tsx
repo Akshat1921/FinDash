@@ -10,6 +10,7 @@ import AdminDashboard from './pages/AdminDashboard'
 import ProtectedRoute from './components/ProtectedRoute'
 import AdminProtectedRoute from './components/AdminProtectedRoute'
 import PortfolioPage from './pages/PortfolioPage'
+import CartPage from './pages/CartPage'
 import StockAnalysisPage from './pages/StockAnalysisPage'
 import { PortfolioProvider } from './context/PortfolioContext'
 
@@ -52,6 +53,16 @@ function AppContent() {
             element={
               <ProtectedRoute>
                 <PortfolioPage />
+              </ProtectedRoute>
+            } 
+          />
+          <Route 
+            path="/cart" 
+            element={
+              <ProtectedRoute>
+                <PortfolioProvider>
+                  <CartPage />
+                </PortfolioProvider>
               </ProtectedRoute>
             } 
           />
