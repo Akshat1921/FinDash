@@ -67,9 +67,9 @@ function LoginPage() {
     };
 
     return (
-        <div className="min-h-screen bg-gradient-to-br from-indigo-500 via-purple-600 to-purple-800 flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+        <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
             <div className="max-w-md w-full space-y-8">
-                <div className="bg-white/10 backdrop-blur-lg rounded-xl border border-white/20 shadow-2xl p-8">
+                <div className="backdrop-blur-xl bg-white/10 rounded-2xl border border-white/20 shadow-xl p-8">
                     {/* Header */}
                     <div className="text-center mb-8">
                         <h2 className="text-3xl font-bold text-white">
@@ -84,7 +84,7 @@ function LoginPage() {
                     <form onSubmit={handleLogin} className="space-y-6">
                         {/* Email Input */}
                         <div>
-                            <label htmlFor="email" className="block text-sm font-medium text-white/80 mb-2">
+                            <label htmlFor="email" className="block text-sm font-medium text-white mb-2">
                                 Email Address
                             </label>
                             <input
@@ -93,17 +93,17 @@ function LoginPage() {
                                 value={username}
                                 onChange={(e) => setUsername(e.target.value)}
                                 placeholder="Enter your email"
-                                className="w-full px-3 py-3 bg-white/10 backdrop-blur-lg border border-white/20 rounded-lg 
+                                className="w-full px-3 py-3 backdrop-blur-xl bg-white/10 border border-white/20 rounded-lg 
                                          text-white placeholder-white/50
                                          focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent
-                                         transition duration-200"
+                                         transition-all duration-200"
                                 required
                             />
                         </div>
 
                         {/* Password Input */}
                         <div>
-                            <label htmlFor="password" className="block text-sm font-medium text-white/80 mb-2">
+                            <label htmlFor="password" className="block text-sm font-medium text-white mb-2">
                                 Password
                             </label>
                             <input
@@ -112,17 +112,17 @@ function LoginPage() {
                                 value={password}
                                 onChange={(e) => setPassword(e.target.value)}
                                 placeholder="Enter your password"
-                                className="w-full px-3 py-3 bg-white/10 backdrop-blur-lg border border-white/20 rounded-lg 
+                                className="w-full px-3 py-3 backdrop-blur-xl bg-white/10 border border-white/20 rounded-lg 
                                          text-white placeholder-white/50
                                          focus:outline-none focus:ring-2 focus:ring-blue-400 focus:border-transparent
-                                         transition duration-200"
+                                         transition-all duration-200"
                                 required
                             />
                         </div>
 
                         {/* Error Message */}
                         {error && (
-                            <div className="bg-red-500/20 backdrop-blur-lg border border-red-500/30 rounded-lg p-3">
+                            <div className="backdrop-blur-xl bg-red-500/10 border border-red-400/30 rounded-lg p-3">
                                 <p className="text-sm text-red-300">{error}</p>
                             </div>
                         )}
@@ -131,11 +131,11 @@ function LoginPage() {
                         <button
                             type="submit"
                             disabled={loading}
-                            className="w-full bg-blue-500/20 hover:bg-blue-500/30 disabled:bg-white/10 
-                                     text-white font-medium py-3 px-4 rounded-lg border border-blue-500/30
+                            className="w-full bg-black hover:bg-gray-900 disabled:bg-gray-900/50 
+                                     text-slate-300 font-medium py-3 px-4 rounded-lg border border-gray-800
                                      focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2
                                      transition-all duration-200 ease-in-out
-                                     disabled:cursor-not-allowed disabled:border-white/20"
+                                     disabled:cursor-not-allowed disabled:text-slate-500"
                         >
                             {loading ? (
                                 <div className="flex items-center justify-center">
@@ -154,7 +154,7 @@ function LoginPage() {
                                 <Link 
                                     to="/signup" 
                                     className="font-medium text-blue-300 hover:text-blue-200 
-                                             transition duration-200"
+                                             transition-all duration-200"
                                 >
                                     Create an account
                                 </Link>
