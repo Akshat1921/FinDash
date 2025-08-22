@@ -56,8 +56,8 @@ export const CompanyPage: React.FC = () => {
 
   if (loading) {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-indigo-500 via-purple-600 to-purple-800 flex items-center justify-center">
-      <div className="bg-white/10 backdrop-blur-lg rounded-xl p-8 border border-white/20 text-center">
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black flex items-center justify-center">
+      <div className="backdrop-blur-xl bg-white/10 rounded-2xl p-8 border border-white/20 text-center shadow-xl">
         <div className="relative mx-auto mb-4 w-16 h-16">
           <div className="animate-spin rounded-full h-16 w-16 border-4 border-white/20"></div>
           <div className="animate-spin rounded-full h-16 w-16 border-4 border-transparent border-t-white absolute top-0 left-0"></div>
@@ -71,8 +71,8 @@ export const CompanyPage: React.FC = () => {
 
   if (data === null) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-indigo-500 via-purple-600 to-purple-800 flex items-center justify-center">
-        <div className="bg-red-500/20 backdrop-blur-lg rounded-xl p-8 border border-red-400/30 text-center max-w-md mx-auto">
+      <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black flex items-center justify-center">
+        <div className="backdrop-blur-xl bg-red-500/10 rounded-2xl p-8 border border-red-400/30 text-center max-w-md mx-auto shadow-xl">
           <div className="text-red-300 text-6xl mb-4">⚠️</div>
           <p className="text-red-300 text-xl font-semibold mb-2">Failed to load data</p>
           <p className="text-red-200/80 text-sm">Unable to fetch financial information for {symbol}</p>
@@ -82,10 +82,10 @@ export const CompanyPage: React.FC = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-indigo-500 via-purple-600 to-purple-800">
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black">
       <CompanyPageNavbar selectedTab={selectedTab} setSelectedTab={setSelectedTab} />
       <div className="pt-24 px-4 max-w-6xl mx-auto">
-        <div className="bg-white/10 backdrop-blur-lg rounded-xl p-6 border border-white/20 shadow-2xl">
+        <div className="backdrop-blur-xl bg-white/10 rounded-2xl p-6 border border-white/20 shadow-xl">
           {selectedTab === "overview" && <CompanyOverviewSection data={data} />}
           {selectedTab === "balance-sheet" && <BalanceSheet data={data.balanceSheets} />}
           {selectedTab === "income-statement" && <IncomeStatement data={data.incomeStatements} />}

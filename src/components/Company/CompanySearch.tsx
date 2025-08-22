@@ -72,8 +72,8 @@ const Stocks: React.FC = () => {
   if (loading) return (
     <>
       <DefaultNavbar/>
-      <div className="min-h-screen bg-gradient-to-br from-indigo-500 via-purple-600 to-purple-800 flex items-center justify-center">
-        <div className="bg-white/10 backdrop-blur-lg rounded-xl border border-white/20 shadow-xl p-8">
+      <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black flex items-center justify-center">
+        <div className="backdrop-blur-xl bg-white/10 rounded-2xl border border-white/20 shadow-xl p-8">
           <p className="text-white text-xl">Loading...</p>
         </div>
       </div>
@@ -83,9 +83,9 @@ const Stocks: React.FC = () => {
   if (error) return (
     <>
       <DefaultNavbar/>
-      <div className="min-h-screen bg-gradient-to-br from-indigo-500 via-purple-600 to-purple-800 flex items-center justify-center">
-        <div className="bg-white/10 backdrop-blur-lg rounded-xl border border-white/20 shadow-xl p-8">
-          <p className="text-red-200 text-xl">{error}</p>
+      <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black flex items-center justify-center">
+        <div className="backdrop-blur-xl bg-white/10 rounded-2xl border border-white/20 shadow-xl p-8">
+          <p className="text-red-300 text-xl">{error}</p>
         </div>
       </div>
     </>
@@ -94,9 +94,9 @@ const Stocks: React.FC = () => {
   return (
     <>
       <DefaultNavbar/>
-      <div className="min-h-screen bg-gradient-to-br from-indigo-500 via-purple-600 to-purple-800">
+      <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black">
         <div className="max-w-6xl mx-auto pt-10 p-4">
-          <div className="bg-white/10 backdrop-blur-lg rounded-xl border border-white/20 shadow-xl p-6">
+          <div className="backdrop-blur-xl bg-white/10 rounded-2xl border border-white/20 shadow-xl p-6">
             <div className="flex items-center relative">
               <h2 className="text-2xl font-bold text-white flex-grow text-center pb-4">
                 {isPortfolioMode ? "Add Stocks to Portfolio" : "Stock List"}
@@ -108,7 +108,7 @@ const Stocks: React.FC = () => {
 
             {/* Portfolio Mode Banner */}
             {isPortfolioMode && (
-              <div className="mb-6 p-4 bg-white/20 backdrop-blur-lg rounded-xl border border-white/30">
+              <div className="mb-6 p-4 backdrop-blur-xl bg-white/10 rounded-2xl border border-white/20">
                 <div className="flex items-center justify-between">
                   <div className="flex items-center">
                     <div className="w-3 h-3 bg-green-400 rounded-full mr-3 animate-pulse"></div>
@@ -120,7 +120,7 @@ const Stocks: React.FC = () => {
                     </span>
                     <button 
                       onClick={() => navigate('/cart')}
-                      className="px-4 py-2 bg-white/40 hover:bg-white/50 text-white rounded-lg transition-colors backdrop-blur-sm border border-white/30"
+                      className="px-4 py-2 bg-black hover:bg-gray-900 text-slate-300 rounded-lg transition-all duration-200 backdrop-blur-sm border border-gray-800"
                     >
                       View Cart ({selectedStocks.length})
                     </button>
@@ -130,8 +130,8 @@ const Stocks: React.FC = () => {
             )}
             
             <div className="overflow-x-auto">
-              <table className="min-w-full border border-white/20 rounded-lg bg-white/5 backdrop-blur-sm">
-                <thead className="bg-white/20 backdrop-blur-sm">
+              <table className="min-w-full border border-white/20 rounded-2xl backdrop-blur-xl bg-white/5">
+                <thead className="backdrop-blur-xl bg-white/10">
                   <tr>
                     <th className="px-4 py-2 border-b border-white/20 text-white font-semibold">Symbol</th>
                     <th className="px-4 py-2 border-b border-white/20 text-white font-semibold">Name</th>
@@ -159,9 +159,10 @@ const Stocks: React.FC = () => {
                       <td className="px-4 py-2 border-b border-white/10 font-semibold">
                         <Link
                           to={`/stocks/${symbol}`}
-                          className="text-white underline hover:text-white/80 cursor-pointer"
+                          className="text-blue-300 underline hover:text-blue-200 cursor-pointer"
                         >
-                          {symbol}
+                          <p className="text-slate-300">{symbol}</p>
+                          
                         </Link>
                       </td>
                       <td className="px-4 py-2 border-b border-white/10 text-white/90">{info[0]}</td>
@@ -178,7 +179,7 @@ const Stocks: React.FC = () => {
                               e.stopPropagation();
                               handleAddStock(symbol, info[0]);
                             }}
-                            className="px-3 py-1 bg-white/40 hover:bg-white/50 text-white rounded-lg transition-colors backdrop-blur-sm border border-white/30 text-sm font-medium"
+                            className="px-3 py-1 bg-black hover:bg-gray-900 text-slate-300 rounded-lg transition-all duration-200 backdrop-blur-sm border border-gray-800 text-sm font-medium"
                           >
                             Add Stock
                           </button>
@@ -193,7 +194,7 @@ const Stocks: React.FC = () => {
             {/* Pagination */}
             <div className="flex justify-center mt-6 space-x-2">
               <button
-                className="px-3 py-1 rounded bg-white/40 text-white disabled:bg-white/10 disabled:text-white/50 hover:bg-white/50 transition-colors backdrop-blur-sm"
+                className="px-3 py-1 rounded bg-black hover:bg-gray-900 text-slate-300 disabled:bg-gray-900/50 disabled:text-slate-500 transition-all duration-200 backdrop-blur-sm border border-gray-800"
                 onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
                 disabled={currentPage === 1}
               >
@@ -203,10 +204,10 @@ const Stocks: React.FC = () => {
               {Array.from({ length: Math.ceil(totalCompanies / postsPerPage) }, (_, i) => i + 1).map((num) => (
                 <button
                   key={num}
-                  className={`px-3 py-1 rounded backdrop-blur-sm transition-colors ${
+                  className={`px-3 py-1 rounded backdrop-blur-sm transition-all duration-200 border ${
                     num === currentPage 
-                      ? "bg-white/50 text-white font-semibold" 
-                      : "bg-white/20 text-white/80 hover:bg-white/30 hover:text-white"
+                      ? "bg-white/10 text-white font-semibold border-white/30" 
+                      : "bg-black hover:bg-gray-900 text-slate-300 border-gray-800 hover:text-white"
                   }`}
                   onClick={() => setCurrentPage(num)}
                   disabled={num === currentPage}
@@ -216,7 +217,7 @@ const Stocks: React.FC = () => {
               ))}
 
               <button
-                className="px-3 py-1 rounded bg-white/40 text-white disabled:bg-white/10 disabled:text-white/50 hover:bg-white/50 transition-colors backdrop-blur-sm"
+                className="px-3 py-1 rounded bg-black hover:bg-gray-900 text-slate-300 disabled:bg-gray-900/50 disabled:text-slate-500 transition-all duration-200 backdrop-blur-sm border border-gray-800"
                 onClick={() => setCurrentPage((p) => Math.min(Math.ceil(totalCompanies / postsPerPage), p + 1))}
                 disabled={currentPage === Math.ceil(totalCompanies / postsPerPage)}
               >
