@@ -98,21 +98,21 @@ const DashboardPage: React.FC = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-indigo-500 via-purple-600 to-purple-800 text-white">
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white">
       {/* Navigation */}
-      <nav className="bg-white/10 backdrop-blur-lg border-b border-white/20">
+      <nav className="backdrop-blur-xl bg-white/10 rounded-2xl shadow-lg border-b border-white/20 mx-4">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
-            <div className="flex items-center">
+            <div className="flex items-center m-0">
               <h1 className="text-2xl font-bold text-white">FinDash</h1>
             </div>
             <div className="flex items-center space-x-4">
-              <button 
+              <button
                 onClick={() => {
                   localStorage.removeItem('authToken');
                   window.location.href = '/login';
                 }}
-                className="text-white/80 hover:text-red-300 px-3 py-2 rounded-md text-sm font-medium transition duration-200"
+                className="inline-flex items-center px-4 py-2 bg-black hover:bg-gray-900 text-slate-300 font-medium rounded-lg transition-all duration-200 border border-gray-800"
               >
                 Logout
               </button>
@@ -129,7 +129,7 @@ const DashboardPage: React.FC = () => {
             Welcome to Your Financial Dashboard
           </h2>
           <p className="text-lg text-white/80">
-            {portfolioStatus?.hasPortfolio 
+            {portfolioStatus?.hasPortfolio
               ? "Track and analyze your investment portfolio with comprehensive financial data"
               : "Create your first portfolio to start tracking your investments"
             }
@@ -141,7 +141,7 @@ const DashboardPage: React.FC = () => {
 
         {/* Portfolio Status Card */}
         {portfolioStatus && (
-          <div className="bg-white/10 backdrop-blur-lg rounded-xl border border-white/20 p-6 mb-8">
+          <div className="backdrop-blur-xl bg-white/10 rounded-2xl shadow-lg p-6 mb-8 border border-white/20">
             <div className="text-center">
               <h3 className="text-2xl font-bold text-white mb-4">
                 Portfolio Status
@@ -149,45 +149,45 @@ const DashboardPage: React.FC = () => {
               <p className="text-lg text-white/80 mb-6">
                 {portfolioStatus.message}
               </p>
-              
+
               {portfolioStatus.hasPortfolio ? (
                 // Existing User - Show Portfolio Summary
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-6">
-                  <div className="bg-white/10 backdrop-blur-lg rounded-xl border border-white/20 p-4 hover:bg-white/15 transition-all duration-200">
+                  <div className="backdrop-blur-xl bg-white/10 rounded-2xl shadow-lg p-4 hover:bg-white/15 transition-all duration-200 border border-white/20">
                     <h4 className="text-lg font-semibold text-blue-300">Total Value</h4>
                     <p className="text-2xl font-bold text-white">
                       {formatCurrency(portfolioStatus.totalValue || '0')}
                     </p>
                   </div>
-                  <div className="bg-white/10 backdrop-blur-lg rounded-xl border border-white/20 p-4 hover:bg-white/15 transition-all duration-200">
+                  <div className="backdrop-blur-xl bg-white/10 rounded-2xl shadow-lg p-4 hover:bg-white/15 transition-all duration-200 border border-white/20">
                     <h4 className={`text-lg font-semibold ${
-                      parseFloat(portfolioStatus.gainLoss || '0') >= 0 
-                        ? 'text-green-300' 
+                      parseFloat(portfolioStatus.gainLoss || '0') >= 0
+                        ? 'text-green-300'
                         : 'text-red-300'
                     }`}>Gain/Loss</h4>
                     <p className={`text-2xl font-bold ${
-                      parseFloat(portfolioStatus.gainLoss || '0') >= 0 
-                        ? 'text-green-300' 
+                      parseFloat(portfolioStatus.gainLoss || '0') >= 0
+                        ? 'text-green-300'
                         : 'text-red-300'
                     }`}>
                       {formatCurrency(portfolioStatus.gainLoss || '0')}
                     </p>
                   </div>
-                  <div className="bg-white/10 backdrop-blur-lg rounded-xl border border-white/20 p-4 hover:bg-white/15 transition-all duration-200">
+                  <div className="backdrop-blur-xl bg-white/10 rounded-2xl shadow-lg p-4 hover:bg-white/15 transition-all duration-200 border border-white/20">
                     <h4 className={`text-lg font-semibold ${
-                      parseFloat(portfolioStatus.gainLossPercentage || '0') >= 0 
-                        ? 'text-green-300' 
+                      parseFloat(portfolioStatus.gainLossPercentage || '0') >= 0
+                        ? 'text-green-300'
                         : 'text-red-300'
                     }`}>Percentage</h4>
                     <p className={`text-2xl font-bold ${
-                      parseFloat(portfolioStatus.gainLossPercentage || '0') >= 0 
-                        ? 'text-green-300' 
+                      parseFloat(portfolioStatus.gainLossPercentage || '0') >= 0
+                        ? 'text-green-300'
                         : 'text-red-300'
                     }`}>
                       {formatPercentage(portfolioStatus.gainLossPercentage || "0")}
                     </p>
                   </div>
-                  <div className="bg-white/10 backdrop-blur-lg rounded-xl border border-white/20 p-4 hover:bg-white/15 transition-all duration-200">
+                  <div className="backdrop-blur-xl bg-white/10 rounded-2xl shadow-lg p-4 hover:bg-white/15 transition-all duration-200 border border-white/20">
                     <h4 className="text-lg font-semibold text-purple-300">Total Stocks</h4>
                     <p className="text-2xl font-bold text-white">
                       {portfolioStatus.stockCount || 0}
@@ -196,29 +196,23 @@ const DashboardPage: React.FC = () => {
                 </div>
               ) : (
                 // First-Time User - Show Welcome Message
-                <div className="bg-white/5 backdrop-blur-lg rounded-xl border border-white/20 p-8 mb-6">
+                <div className="backdrop-blur-xl bg-white/5 rounded-2xl shadow-lg p-8 mb-6 border border-white/20">
                   <h4 className="text-xl font-semibold text-blue-300 mb-4">
                     🚀 Start Your Investment Journey
                   </h4>
                   <p className="text-white/80 mb-4">
-                    Create your first portfolio to begin tracking your stock investments, 
+                    Create your first portfolio to begin tracking your stock investments,
                     monitor performance, and analyze your financial growth.
                   </p>
                 </div>
               )}
 
-              <Link 
+              <Link
                 to={portfolioStatus.hasPortfolio ? "/stocks?portfolio=true" : "/stocks"}
-                className={`inline-flex items-center px-6 py-3 font-semibold rounded-lg transition duration-200 backdrop-blur-sm text-lg ${
-                  portfolioStatus.hasPortfolio
-                    ? 'bg-green-500/30 hover:bg-green-500/40 text-white border border-green-400/50 shadow-lg'
-                    : 'bg-blue-500/30 hover:bg-blue-500/40 text-white border border-blue-400/50 shadow-lg'
-                }`}
+                className="inline-flex items-center px-6 py-3 bg-black hover:bg-gray-900 text-white font-medium rounded-lg transition-all duration-200 border border-gray-800 text-lg"
               >
-                {portfolioStatus.buttonText}
-                <svg className="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
+                <p className='text-slate-300'>{portfolioStatus.buttonText}</p>
+                
               </Link>
             </div>
           </div>
@@ -227,7 +221,7 @@ const DashboardPage: React.FC = () => {
         {/* Dashboard Cards */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
           {/* Stock Search Card */}
-          <div className="bg-white/10 backdrop-blur-lg rounded-xl border border-white/20 p-6 hover:bg-white/15 transition-all duration-300">
+          <div className="backdrop-blur-xl bg-white/10 rounded-2xl shadow-lg border border-white/20 p-6 hover:bg-white/15 transition-all duration-300">
             <div className="flex items-center mb-4">
               <div className="p-3 bg-blue-500/20 rounded-lg border border-blue-500/30">
                 <svg className="w-6 h-6 text-blue-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -239,71 +233,70 @@ const DashboardPage: React.FC = () => {
             <p className="text-white/80 mb-4">
               Search and analyze individual stocks with detailed financial information
             </p>
-            <Link 
+            <Link
               to="/stocks"
-              className="inline-flex items-center px-4 py-2 bg-blue-500/30 hover:bg-blue-500/40 
-                       text-white font-semibold rounded-lg transition-all duration-200 border border-blue-400/50 backdrop-blur-sm shadow-lg"
+              className="inline-flex items-center px-4 py-2 bg-black hover:bg-gray-900 text-white font-medium rounded-lg transition-all duration-200 border border-gray-800"
             >
-              Browse Stocks
-              <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-              </svg>
+              <p className='text-slate-300'>Browse Stocks</p>
             </Link>
           </div>
 
           {/* Portfolio Management Card */}
-          <div className="bg-white/10 backdrop-blur-lg rounded-xl border border-white/20 p-6 hover:bg-white/15 transition-all duration-300">
+          <div className="backdrop-blur-xl bg-white/10 rounded-2xl shadow-lg border border-white/20 p-6 hover:bg-white/15 transition-all duration-300">
             <div className="flex items-center mb-4">
               <div className="p-3 bg-green-500/20 rounded-lg border border-green-500/30">
-                <svg className="w-6 h-6 text-green-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+                <svg
+                  className="w-6 h-6 text-green-300"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"
+                  />
                 </svg>
               </div>
-              <h3 className="text-xl font-semibold text-white ml-3">Portfolio Management</h3>
+              <h3 className="text-xl font-semibold text-white ml-3">
+                Portfolio Management
+              </h3>
             </div>
+
             <p className="text-white/80 mb-4">
-              {portfolioStatus?.hasPortfolio 
+              {portfolioStatus?.hasPortfolio
                 ? "Manage your investment portfolio and track performance"
-                : "Create your first portfolio to start tracking investments"
-              }
+                : "Create your first portfolio to start tracking investments"}
             </p>
+
             <div className="space-y-2">
               {portfolioStatus?.hasPortfolio ? (
-                <Link 
+                <Link
                   to="/stocks?portfolio=true"
-                  className="inline-flex items-center px-4 py-2 bg-green-500/30 hover:bg-green-500/40 
-                           text-white font-semibold rounded-lg transition-all duration-200 w-full justify-center border border-green-400/50 backdrop-blur-sm shadow-lg"
+                  className="inline-flex items-center justify-center w-full px-4 py-2 bg-black hover:bg-gray-900 text-white font-medium rounded-lg transition-all duration-200 border border-gray-800"
                 >
-                  {portfolioStatus.buttonText}
-                  <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
-                  </svg>
+                  <p className='text-slate-300'>{portfolioStatus.buttonText}</p>
                 </Link>
               ) : (
-                <div className="inline-flex items-center px-4 py-2 font-medium rounded-lg w-full justify-center bg-white/5 cursor-not-allowed text-white/50 border border-white/20">
-                  Portfolio Creation Disabled
-                  <svg className="w-4 h-4 ml-2 text-white/50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728L5.636 5.636m12.728 12.728L18.364 5.636M5.636 18.364l12.728-12.728" />
-                  </svg>
+                <div className="inline-flex items-center justify-center w-full px-4 py-2 bg-gray-900/50 text-gray-500 font-medium rounded-lg border border-gray-700/50 cursor-not-allowed">
+                  <p className='text-slate-300'>Portfolio Creation Disabled</p>
                 </div>
               )}
+
               {portfolioStatus?.hasPortfolio && (
-                <Link 
+                <Link
                   to="/portfolio"
-                  className="inline-flex items-center px-4 py-2 bg-purple-500/30 hover:bg-purple-500/40 
-                           text-white font-semibold rounded-lg transition-all duration-200 w-full justify-center border border-purple-400/50 backdrop-blur-sm shadow-lg"
+                  className="inline-flex items-center justify-center w-full px-4 py-2 bg-black hover:bg-gray-900 text-white font-medium rounded-lg transition-all duration-200 border border-gray-800"
                 >
-                  View Portfolio Details
-                  <svg className="w-4 h-4 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                  </svg>
+                  <p className='text-slate-300'>View Portfolio Details</p>
                 </Link>
               )}
             </div>
           </div>
 
           {/* Market Insights Card */}
-          <div className="bg-white/10 backdrop-blur-lg rounded-xl border border-white/20 p-6 hover:bg-white/15 transition-all duration-300">
+          <div className="backdrop-blur-xl bg-white/10 rounded-2xl shadow-lg border border-white/20 p-6 hover:bg-white/15 transition-all duration-300">
             <div className="flex items-center mb-4">
               <div className="p-3 bg-purple-500/20 rounded-lg border border-purple-500/30">
                 <svg className="w-6 h-6 text-purple-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -315,21 +308,24 @@ const DashboardPage: React.FC = () => {
             <p className="text-white/80 mb-4">
               Stay updated with latest market trends and financial insights
             </p>
-            <button className="inline-flex items-center px-4 py-2 bg-purple-500/20 hover:bg-purple-500/30 
-                             text-purple-300 font-medium rounded-lg transition-all duration-200 border border-purple-500/30">
-              Coming Soon
-            </button>
+            
+                <Link
+                  to="/dashboard"
+                  className="inline-flex items-center justify-center w-full px-4 py-2 bg-black hover:bg-gray-900 text-white font-medium rounded-lg transition-all duration-200 border border-gray-800"
+                >
+                  <p className='text-slate-300'>Coming soon</p>
+                </Link>
+
           </div>
         </div>
 
         {/* Quick Actions */}
-        <div className="bg-white/10 backdrop-blur-lg rounded-xl border border-white/20 p-8">
+        <div className="backdrop-blur-xl bg-white/10 rounded-2xl shadow-lg border border-white/20 p-8">
           <h3 className="text-2xl font-bold text-white mb-6">Quick Actions</h3>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-            <Link 
+            <Link
               to="/stocks"
-              className="flex items-center p-4 bg-white/5 backdrop-blur-lg rounded-xl border border-white/20 
-                       hover:bg-white/10 transition-all duration-200"
+              className="flex items-center p-4 bg-gray-900/60 hover:bg-gray-800/80 rounded-2xl transition-all duration-200 border border-gray-700"
             >
               <div className="flex-shrink-0">
                 <div className="w-10 h-10 bg-blue-500/20 rounded-lg flex items-center justify-center border border-blue-500/30">
@@ -340,15 +336,14 @@ const DashboardPage: React.FC = () => {
               </div>
               <div className="ml-4">
                 <h4 className="text-lg font-medium text-white">Search Stocks</h4>
-                <p className="text-sm text-white/70">Find and analyze stock information</p>
+                <p className="text-sm text-slate-300">Find and analyze stock information</p>
               </div>
             </Link>
 
             {portfolioStatus?.hasPortfolio ? (
-              <Link 
+              <Link
                 to="/portfolio"
-                className="flex items-center p-4 bg-white/5 backdrop-blur-lg rounded-xl border border-white/20 
-                         hover:bg-white/10 transition-all duration-200"
+                className="flex items-center p-4 bg-gray-900/60 hover:bg-gray-800/80 rounded-2xl transition-all duration-200 border border-gray-700"
               >
                 <div className="flex-shrink-0">
                   <div className="w-10 h-10 bg-green-500/20 rounded-lg flex items-center justify-center border border-green-500/30">
@@ -359,23 +354,23 @@ const DashboardPage: React.FC = () => {
                 </div>
                 <div className="ml-4">
                   <h4 className="text-lg font-medium text-white">View Portfolio</h4>
-                  <p className="text-sm text-white/70">Review your investments and performance</p>
+                  <p className="text-sm text-slate-300">Review your investments and performance</p>
                 </div>
               </Link>
             ) : (
-              <div className="flex items-center p-4 bg-white/5 backdrop-blur-lg rounded-xl border border-white/20 opacity-50 cursor-not-allowed">
+              <div className="flex items-center p-4 bg-gray-900/40 rounded-2xl border border-gray-700/50 opacity-60 cursor-not-allowed">
                 <div className="flex-shrink-0">
-                  <div className="w-10 h-10 rounded-lg flex items-center justify-center bg-white/10">
-                    <svg className="w-5 h-5 text-white/50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728L5.636 5.636m12.728 12.728L18.364 5.636M5.636 18.364l12.728-12.728" />
+                  <div className="w-10 h-10 rounded-lg flex items-center justify-center bg-gray-500/20 border border-gray-500/30">
+                    <svg className="w-5 h-5 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728L5.636 5.636m12.728 12.728L18.364 5.636M5.636 18.364l12.728-12.728" />
                     </svg>
                   </div>
                 </div>
                 <div className="ml-4">
-                  <h4 className="text-lg font-medium text-white/50">
+                  <h4 className="text-lg font-medium text-gray-400">
                     Portfolio Creation Disabled
                   </h4>
-                  <p className="text-sm text-white/40">
+                  <p className="text-sm text-gray-400/70">
                     Portfolio creation functionality has been removed
                   </p>
                 </div>
