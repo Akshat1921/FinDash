@@ -133,10 +133,10 @@ const StockAnalysisPage: React.FC = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-indigo-500 via-purple-600 to-purple-800">
+      <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black">
         <DefaultNavbar />
         <div className="pt-20 flex justify-center items-center h-64">
-          <div className="bg-white/10 backdrop-blur-lg rounded-xl p-8 border border-white/20 text-center">
+          <div className="backdrop-blur-xl bg-white/10 rounded-2xl p-8 border border-white/20 text-center shadow-xl">
             <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-white mx-auto mb-4"></div>
             <p className="text-white text-lg">Loading financial analysis...</p>
           </div>
@@ -147,13 +147,14 @@ const StockAnalysisPage: React.FC = () => {
 
   if (error) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-indigo-500 via-purple-600 to-purple-800">
+      <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black">
         <DefaultNavbar />
         <div className="pt-20 text-center">
-          <div className="bg-red-500/20 backdrop-blur-lg rounded-xl p-8 border border-red-400/30 max-w-md mx-auto">
+          <div className="backdrop-blur-xl bg-red-500/10 rounded-2xl p-8 border border-red-400/30 max-w-md mx-auto shadow-xl">
             <p className="text-red-300 text-xl mb-4">{error}</p>
-            <Link to="/portfolio" className="inline-block bg-white/10 hover:bg-white/20 text-white px-6 py-2 rounded-lg border border-white/20 transition duration-200">
-              Back to Portfolio
+            <Link to="/portfolio" className="inline-block bg-black hover:bg-gray-900 text-slate-300 px-6 py-2 rounded-lg border border-gray-800 transition-all duration-200">
+              <p className='text-slate-300'>Back to Portfolio</p>
+              
             </Link>
           </div>
         </div>
@@ -164,13 +165,13 @@ const StockAnalysisPage: React.FC = () => {
   const chartData = prepareChartData();
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-indigo-500 via-purple-600 to-purple-800">
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black">
       <DefaultNavbar />
       
       <div className="pt-24 px-4 max-w-7xl mx-auto">
         {/* Header */}
         <div className="flex items-center justify-between mb-8">
-          <div className="bg-white/10 backdrop-blur-lg rounded-xl p-6 border border-white/20 flex-1 mr-4">
+          <div className="backdrop-blur-xl bg-white/10 rounded-2xl p-6 border border-white/20 flex-1 mr-4 shadow-xl">
             <h1 className="text-3xl font-bold text-white">
               {symbol} Financial Analysis
             </h1>
@@ -180,7 +181,7 @@ const StockAnalysisPage: React.FC = () => {
           </div>
           <Link
             to="/portfolio"
-            className="inline-flex items-center px-4 py-2 bg-white/10 hover:bg-white/20 text-white rounded-lg border border-white/20 backdrop-blur-sm transition duration-200"
+            className="inline-flex items-center px-4 py-2 bg-black hover:bg-gray-900 text-slate-300 rounded-lg border border-gray-800 backdrop-blur-sm transition-all duration-200"
           >
             <svg className="w-4 h-4 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10 19l-7-7m0 0l7-7m-7 7h18" />
@@ -190,10 +191,10 @@ const StockAnalysisPage: React.FC = () => {
         </div>
 
         {/* Tab Navigation */}
-        <div className="flex mb-8 bg-white/10 backdrop-blur-lg rounded-xl border border-white/20 p-2">
+        <div className="flex mb-8 backdrop-blur-xl bg-white/10 rounded-2xl border border-white/20 p-2 shadow-xl">
           <button
             onClick={() => setActiveTab('table')}
-            className={`flex-1 px-6 py-3 font-medium transition duration-200 rounded-lg ${
+            className={`flex-1 px-6 py-3 font-medium transition-all duration-200 rounded-lg ${
               activeTab === 'table'
                 ? 'text-white bg-white/20 border border-white/30'
                 : 'text-white/70 hover:text-white hover:bg-white/10'
@@ -203,7 +204,7 @@ const StockAnalysisPage: React.FC = () => {
           </button>
           <button
             onClick={() => setActiveTab('charts')}
-            className={`flex-1 px-6 py-3 font-medium transition duration-200 rounded-lg ${
+            className={`flex-1 px-6 py-3 font-medium transition-all duration-200 rounded-lg ${
               activeTab === 'charts'
                 ? 'text-white bg-white/20 border border-white/30'
                 : 'text-white/70 hover:text-white hover:bg-white/10'
@@ -216,13 +217,13 @@ const StockAnalysisPage: React.FC = () => {
         {activeTab === 'table' && (
           <div className="space-y-8">
             {/* CAGR Summary */}
-            <div className="bg-white/10 backdrop-blur-lg rounded-xl p-6 border border-white/20">
+            <div className="backdrop-blur-xl bg-white/10 rounded-2xl p-6 border border-white/20 shadow-xl">
               <h2 className="text-2xl font-semibold text-white mb-6">CAGR (Compound Annual Growth Rate)</h2>
               <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
                 {Object.entries(metrics?.cagrData || {})
                   .filter(([_, value]) => value !== null)
                   .map(([key, value]) => (
-                    <div key={key} className="bg-white/5 rounded-lg p-4 border border-white/10">
+                    <div key={key} className="backdrop-blur-xl bg-white/5 rounded-2xl p-4 border border-white/10 hover:bg-white/10 transition-all duration-200">
                       <p className="text-white/70 text-sm capitalize mb-2">
                         {key.replace(/([A-Z])/g, ' $1').replace(/^./, (str: string) => str.toUpperCase())}
                       </p>
@@ -244,13 +245,13 @@ const StockAnalysisPage: React.FC = () => {
               { name: 'Efficiency Metrics', data: metrics?.efficiency, isPercentage: false },
               { name: 'Statement Metrics', data: metrics?.statementMetrics, isCurrency: true }
             ].map((category) => (
-              <div key={category.name} className="bg-white/10 backdrop-blur-lg rounded-xl border border-white/20 overflow-hidden">
+              <div key={category.name} className="backdrop-blur-xl bg-white/10 rounded-2xl border border-white/20 overflow-hidden shadow-xl">
                 <div className="p-6 border-b border-white/20">
                   <h3 className="text-xl font-semibold text-white">{category.name}</h3>
                 </div>
                 <div className="overflow-x-auto">
                   <table className="w-full">
-                    <thead className="bg-white/10">
+                    <thead className="backdrop-blur-xl bg-white/10">
                       <tr>
                         <th className="px-6 py-4 text-left text-white font-semibold">Metric</th>
                         {Object.keys(metrics?.statementMetrics?.Revenue || {})
@@ -265,7 +266,7 @@ const StockAnalysisPage: React.FC = () => {
                     </thead>
                     <tbody>
                       {Object.entries(category.data || {}).map(([metric, yearData]) => (
-                        <tr key={metric} className="border-b border-white/10 hover:bg-white/5">
+                        <tr key={metric} className="border-b border-white/10 hover:bg-white/5 transition-all duration-200">
                           <td className="px-6 py-4 text-white/90 font-medium">
                             {metric.replace(/([A-Z])/g, ' $1').replace(/^./, (str: string) => str.toUpperCase())}
                           </td>
@@ -294,7 +295,7 @@ const StockAnalysisPage: React.FC = () => {
         {activeTab === 'charts' && (
           <div className="space-y-8">
             {/* Revenue and Key Metrics Chart */}
-            <div className="bg-white/10 backdrop-blur-lg rounded-xl p-6 border border-white/20">
+            <div className="backdrop-blur-xl bg-white/10 rounded-2xl p-6 border border-white/20 shadow-xl">
               <h3 className="text-xl font-semibold text-white mb-4">Revenue, Income & Free Cash Flow (Billions)</h3>
               <div className="h-80">
                 <ResponsiveContainer width="100%" height="100%">
@@ -320,7 +321,7 @@ const StockAnalysisPage: React.FC = () => {
             </div>
 
             {/* Profitability Margins Chart */}
-            <div className="bg-white/10 backdrop-blur-lg rounded-xl p-6 border border-white/20">
+            <div className="backdrop-blur-xl bg-white/10 rounded-2xl p-6 border border-white/20 shadow-xl">
               <h3 className="text-xl font-semibold text-white mb-4">Profitability Margins (%)</h3>
               <div className="h-80">
                 <ResponsiveContainer width="100%" height="100%">
@@ -346,7 +347,7 @@ const StockAnalysisPage: React.FC = () => {
             </div>
 
             {/* CAGR Chart */}
-            <div className="bg-white/10 backdrop-blur-lg rounded-xl p-6 border border-white/20">
+            <div className="backdrop-blur-xl bg-white/10 rounded-2xl p-6 border border-white/20 shadow-xl">
               <h3 className="text-xl font-semibold text-white mb-4">CAGR by Metric (%)</h3>
               <div className="h-80">
                 <ResponsiveContainer width="100%" height="100%">
