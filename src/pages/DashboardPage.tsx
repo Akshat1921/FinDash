@@ -100,11 +100,11 @@ const DashboardPage: React.FC = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white">
       {/* Navigation */}
-      <nav className="backdrop-blur-xl bg-white/10 rounded-2xl shadow-lg border-b border-white/20 mx-4">
+      <nav className="backdrop-blur-xl bg-white/10 shadow-lg border-b border-white/20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16">
             <div className="flex items-center m-0">
-              <h1 className="text-2xl font-bold text-white">FinDash</h1>
+              <h1 className="text-xl font-medium text-slate-300">FinDash</h1>
             </div>
             <div className="flex items-center space-x-4">
               <button

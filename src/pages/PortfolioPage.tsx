@@ -96,7 +96,7 @@ const PortfolioPage: React.FC = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-indigo-500 via-purple-600 to-purple-800">
+      <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black">
         <DefaultNavbar />
         <div className="pt-20 flex justify-center items-center h-64">
           <div className="text-center text-white">
@@ -110,10 +110,10 @@ const PortfolioPage: React.FC = () => {
 
   if (error) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-indigo-500 via-purple-600 to-purple-800">
+      <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black">
         <DefaultNavbar />
         <div className="pt-20 text-center px-4 max-w-md mx-auto">
-          <div className="bg-red-500/20 backdrop-blur-lg rounded-xl border border-red-500/30 p-6">
+          <div className="bg-red-500/20 backdrop-blur-xl rounded-2xl border border-red-500/30 p-6">
             <p className="text-red-300 text-xl">{error}</p>
           </div>
         </div>
@@ -122,23 +122,23 @@ const PortfolioPage: React.FC = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-indigo-500 via-purple-600 to-purple-800 text-white">
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white">
       <DefaultNavbar />
       
       <div className="pt-24 px-4 max-w-7xl mx-auto">
         {/* Portfolio Summary */}
-        <div className="bg-white/10 backdrop-blur-lg rounded-xl border border-white/20 p-6 mb-8">
+        <div className="backdrop-blur-xl bg-white/10 rounded-2xl shadow-lg border border-white/20 p-6 mb-8">
           <h1 className="text-3xl font-bold text-white mb-6">My Portfolio</h1>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="bg-white/10 backdrop-blur-lg rounded-xl border border-white/20 p-4 hover:bg-white/15 transition-all duration-200">
+            <div className="backdrop-blur-xl bg-white/10 rounded-2xl shadow-lg border border-white/20 p-4 hover:bg-white/15 transition-all duration-200">
               <h3 className="text-lg font-semibold text-blue-300 mb-2">Total Value</h3>
               <p className="text-2xl font-bold text-white">
                 {formatCurrency(portfolio?.totalValue || '0')}
               </p>
             </div>
             
-            <div className="bg-white/10 backdrop-blur-lg rounded-xl border border-white/20 p-4 hover:bg-white/15 transition-all duration-200">
+            <div className="backdrop-blur-xl bg-white/10 rounded-2xl shadow-lg border border-white/20 p-4 hover:bg-white/15 transition-all duration-200">
               <h3 className={`text-lg font-semibold mb-2 ${
                 parseFloat(portfolio?.gainLoss || '0') >= 0 
                   ? 'text-green-300' 
@@ -155,7 +155,7 @@ const PortfolioPage: React.FC = () => {
               </p>
             </div>
             
-            <div className="bg-white/10 backdrop-blur-lg rounded-xl border border-white/20 p-4 hover:bg-white/15 transition-all duration-200">
+            <div className="backdrop-blur-xl bg-white/10 rounded-2xl shadow-lg border border-white/20 p-4 hover:bg-white/15 transition-all duration-200">
               <h3 className={`text-lg font-semibold mb-2 ${
                 parseFloat(portfolio?.gainLossPercentage || '0') >= 0 
                   ? 'text-green-300' 
@@ -178,17 +178,18 @@ const PortfolioPage: React.FC = () => {
         <div className="mb-6">
           <Link 
             to="/stocks?portfolio=true" 
-            className="inline-flex items-center px-6 py-3 bg-red-500/20 hover:bg-red-500/30 text-white hover:text-white font-semibold rounded-lg transition-all duration-200 border border-red-400/50 backdrop-blur-sm shadow-lg"
+            className="inline-flex items-center px-6 py-3 bg-black hover:bg-gray-900 text-slate-300 font-medium rounded-lg transition-all duration-200 border border-gray-800 shadow-lg"
           >
             <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
             </svg>
-            Add More Stocks
+            <p className='text-slate-300'>Add More Stocks</p>
+            
           </Link>
         </div>
 
         {/* Stocks List */}
-        <div className="bg-white/10 backdrop-blur-lg rounded-xl border border-white/20 shadow-lg overflow-hidden">
+        <div className="backdrop-blur-xl bg-white/10 rounded-2xl shadow-lg border border-white/20 overflow-hidden">
           <div className="px-6 py-4 border-b border-white/20">
             <h2 className="text-xl font-semibold text-white">Your Stocks</h2>
           </div>
@@ -196,9 +197,9 @@ const PortfolioPage: React.FC = () => {
           {portfolio?.userStocks && portfolio.userStocks.length > 0 ? (
             <div className="overflow-x-auto">
               <table className="min-w-full divide-y divide-white/20">
-                <thead className="bg-white/10 backdrop-blur-sm">
+                <thead className="backdrop-blur-xl bg-white/10">
                   <tr>
-                    <th className="px-6 py-3 text-left text-xs font-medium text-white/80 uppercase tracking-wider">
+                    <th className="px-6 py-3 text-center text-xs font-medium text-white/80 uppercase tracking-wider">
                       Stock
                     </th>
                     <th className="px-6 py-3 text-left text-xs font-medium text-white/80 uppercase tracking-wider">
@@ -224,13 +225,14 @@ const PortfolioPage: React.FC = () => {
                 <tbody className="bg-white/5 divide-y divide-white/20">
                   {portfolio.userStocks.map((stock) => (
                     <tr key={stock.id} className="hover:bg-white/10 transition-colors">
-                      <td className="px-6 py-4 whitespace-nowrap">
+                      <td className="px-20 py-4 ">
                         <div>
                           <Link 
                             to={`/stocks/${stock.ticker}`}
-                            className="text-sm font-bold text-white bg-blue-500/20 px-2 py-1 rounded border border-blue-400/30 inline-block hover:bg-blue-500/30 transition-colors cursor-pointer"
+                            className="text-sm font-medium bg-black hover:bg-gray-900 text-slate-300 px-2 py-1 rounded border border-gray-800 inline-block transition-all duration-200 cursor-pointer"
                           >
-                            {stock.ticker}
+                            <p className='text-slate-300'>{stock.ticker}</p>
+                            
                           </Link>
                           <div className="text-sm text-white/80 mt-1">
                             {stock.companyName}
@@ -268,7 +270,7 @@ const PortfolioPage: React.FC = () => {
                         <div className="flex space-x-2">
                           <Link
                             to={`/stocks/${stock.ticker}/analysis`}
-                            className="inline-flex items-center px-3 py-1 rounded-md transition duration-200 bg-red-500/20 hover:bg-red-500/30 text-white hover:text-white"
+                            className="inline-flex items-center px-3 py-1 rounded-lg transition-all duration-200 bg-black hover:bg-gray-900 text-slate-300 border border-gray-800"
                           >
                             <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                               <path
@@ -283,10 +285,10 @@ const PortfolioPage: React.FC = () => {
                           <button
                             onClick={() => removeStock(stock.ticker)}
                             disabled={removingStock === stock.ticker}
-                            className={`inline-flex items-center px-3 py-1 rounded-md transition duration-200 ${
+                            className={`inline-flex items-center px-3 py-1 rounded-lg transition-all duration-200 border ${
                               removingStock === stock.ticker
-                                ? 'bg-white/10 text-white/50 cursor-not-allowed'
-                                : 'bg-red-500/20 hover:bg-red-500/30 text-red-300 hover:text-red-200'
+                                ? 'bg-gray-900/50 text-gray-500 border-gray-700/50 cursor-not-allowed'
+                                : 'bg-red-500/20 hover:bg-red-500/30 text-red-300 hover:text-red-200 border-red-500/30'
                             }`}
                           >
                             {removingStock === stock.ticker ? (
@@ -324,7 +326,7 @@ const PortfolioPage: React.FC = () => {
               <div className="mt-6">
                 <Link
                   to="/stocks?portfolio=true"
-                  className="inline-flex items-center px-6 py-3 border border-red-400/50 shadow-lg text-sm font-semibold rounded-lg bg-red-500/20 hover:bg-red-500/30 text-white hover:text-white backdrop-blur-sm transition-all duration-200"
+                  className="inline-flex items-center px-6 py-3 bg-black hover:bg-gray-900 text-slate-300 font-medium rounded-lg transition-all duration-200 border border-gray-800 shadow-lg"
                 >
                   <svg className="-ml-1 mr-2 h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
