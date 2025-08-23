@@ -89,10 +89,10 @@ const CartPage: React.FC = () => {
 
   if (selectedStocks.length === 0) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-indigo-500 via-purple-600 to-purple-800">
+      <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black">
         <DefaultNavbar />
         <div className="pt-24 px-4 max-w-4xl mx-auto">
-          <div className="bg-white/10 backdrop-blur-lg rounded-xl border border-white/20 p-8 text-center">
+          <div className="backdrop-blur-xl bg-white/10 rounded-2xl border border-white/20 p-8 text-center shadow-xl">
             <svg className="mx-auto h-16 w-16 text-white/40 mb-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 3h2l.4 2M7 13h10l4-8H5.4m0 0L7 13m0 0l-1.8 1.8M7 13l1.8-1.8m4.4 4.4a.9.9 0 11-1.8 0 .9.9 0 011.8 0zm6.2 0a.9.9 0 11-1.8 0 .9.9 0 011.8 0z" />
             </svg>
@@ -102,7 +102,7 @@ const CartPage: React.FC = () => {
             </p>
             <Link
               to="/stocks?portfolio=true"
-              className="inline-flex items-center px-6 py-3 bg-blue-500/20 hover:bg-blue-500/30 text-white rounded-lg transition-colors backdrop-blur-sm border border-blue-400/30 font-semibold"
+              className="inline-flex items-center px-6 py-3 bg-black hover:bg-gray-900 text-slate-300 rounded-lg transition-all duration-200 backdrop-blur-sm border border-gray-800 font-semibold"
             >
               <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
@@ -116,12 +116,12 @@ const CartPage: React.FC = () => {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-indigo-500 via-purple-600 to-purple-800">
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black">
       <DefaultNavbar />
       
       <div className="pt-24 px-4 max-w-6xl mx-auto">
         {/* Cart Header */}
-        <div className="bg-white/10 backdrop-blur-lg rounded-xl border border-white/20 p-6 mb-6">
+        <div className="backdrop-blur-xl bg-white/10 rounded-2xl border border-white/20 p-6 mb-6 shadow-xl">
           <div className="flex items-center justify-between">
             <div>
               <h1 className="text-3xl font-bold text-white mb-2">Stock Cart</h1>
@@ -138,26 +138,26 @@ const CartPage: React.FC = () => {
 
         {/* Error/Success Messages */}
         {error && (
-          <div className="mb-6 p-4 bg-red-500/20 backdrop-blur-lg rounded-xl border border-red-500/30">
+          <div className="mb-6 p-4 backdrop-blur-xl bg-red-500/10 rounded-2xl border border-red-400/30 shadow-xl">
             <p className="text-red-300">{error}</p>
           </div>
         )}
 
         {success && (
-          <div className="mb-6 p-4 bg-green-500/20 backdrop-blur-lg rounded-xl border border-green-500/30">
+          <div className="mb-6 p-4 backdrop-blur-xl bg-green-500/10 rounded-2xl border border-green-400/30 shadow-xl">
             <p className="text-green-300">{success}</p>
           </div>
         )}
 
         {/* Cart Items */}
-        <div className="bg-white/10 backdrop-blur-lg rounded-xl border border-white/20 shadow-lg overflow-hidden mb-6">
+        <div className="backdrop-blur-xl bg-white/10 rounded-2xl border border-white/20 shadow-xl overflow-hidden mb-6">
           <div className="px-6 py-4 border-b border-white/20">
             <h2 className="text-xl font-semibold text-white">Selected Stocks</h2>
           </div>
           
           <div className="overflow-x-auto">
             <table className="min-w-full divide-y divide-white/20">
-              <thead className="bg-white/10 backdrop-blur-sm">
+              <thead className="backdrop-blur-xl bg-white/10">
                 <tr>
                   <th className="px-6 py-3 text-left text-xs font-medium text-white/80 uppercase tracking-wider">
                     Stock
@@ -192,7 +192,7 @@ const CartPage: React.FC = () => {
                         min="1"
                         value={stock.quantity}
                         onChange={(e) => handleQuantityChange(stock.stockSymbol, parseInt(e.target.value) || 1)}
-                        className="w-20 px-2 py-1 bg-white/10 backdrop-blur-sm border border-white/20 rounded text-white text-sm focus:outline-none focus:ring-2 focus:ring-white/30"
+                        className="w-20 px-2 py-1 backdrop-blur-xl bg-white/10 border border-white/20 rounded text-white text-sm focus:outline-none focus:ring-2 focus:ring-white/30"
                       />
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap">
@@ -201,13 +201,13 @@ const CartPage: React.FC = () => {
                         value={stock.purchaseDate}
                         onChange={(e) => handleDateChange(stock.stockSymbol, e.target.value)}
                         max={new Date().toISOString().split('T')[0]}
-                        className="px-2 py-1 bg-white/10 backdrop-blur-sm border border-white/20 rounded text-white text-sm focus:outline-none focus:ring-2 focus:ring-white/30"
+                        className="px-2 py-1 backdrop-blur-xl bg-white/10 border border-white/20 rounded text-white text-sm focus:outline-none focus:ring-2 focus:ring-white/30"
                       />
                     </td>
                     <td className="px-6 py-4 whitespace-nowrap text-sm font-medium">
                       <button
                         onClick={() => removeStock(stock.stockSymbol)}
-                        className="inline-flex items-center px-3 py-1 rounded-md transition duration-200 bg-red-500/20 hover:bg-red-500/30 text-red-300 hover:text-red-200"
+                        className="inline-flex items-center px-3 py-1 rounded-md transition-all duration-200 bg-red-500/10 hover:bg-red-500/20 text-red-300 hover:text-red-200"
                       >
                         <svg className="w-4 h-4 mr-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                           <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
@@ -227,7 +227,7 @@ const CartPage: React.FC = () => {
           <div className="flex gap-4">
             <Link
               to="/stocks?portfolio=true"
-              className="inline-flex items-center px-6 py-3 bg-white/10 hover:bg-white/20 text-white rounded-lg transition-colors backdrop-blur-sm border border-white/20 font-semibold"
+              className="inline-flex items-center px-6 py-3 bg-black hover:bg-gray-900 text-slate-300 rounded-lg transition-all duration-200 backdrop-blur-sm border border-gray-800 font-semibold"
             >
               <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6v6m0 0v6m0-6h6m-6 0H6" />
@@ -237,7 +237,7 @@ const CartPage: React.FC = () => {
             
             <button
               onClick={clearSelections}
-              className="inline-flex items-center px-6 py-3 bg-red-500/20 hover:bg-red-500/30 text-red-300 rounded-lg transition-colors backdrop-blur-sm border border-red-400/30 font-semibold"
+              className="inline-flex items-center px-6 py-3 bg-red-500/10 hover:bg-red-500/20 text-red-300 rounded-lg transition-all duration-200 backdrop-blur-sm border border-red-400/30 font-semibold"
             >
               <svg className="w-5 h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
@@ -249,7 +249,7 @@ const CartPage: React.FC = () => {
           <button
             onClick={handleSaveAllToPortfolio}
             disabled={loading || selectedStocks.length === 0}
-            className="inline-flex items-center px-8 py-3 bg-green-500/20 hover:bg-green-500/30 disabled:bg-white/5 text-green-300 disabled:text-white/50 rounded-lg transition-colors backdrop-blur-sm border border-green-400/30 font-semibold disabled:cursor-not-allowed"
+            className="inline-flex items-center px-8 py-3 bg-green-500/10 hover:bg-green-500/20 disabled:bg-gray-900/50 text-green-300 disabled:text-slate-500 rounded-lg transition-all duration-200 backdrop-blur-sm border border-green-400/30 font-semibold disabled:cursor-not-allowed"
           >
             {loading ? (
               <>

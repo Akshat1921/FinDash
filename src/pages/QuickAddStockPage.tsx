@@ -14,12 +14,12 @@ const QuickAddStockPage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-indigo-500 via-purple-600 to-purple-800">
+    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black">
       <DefaultNavbar />
       
       <div className="max-w-lg mx-auto pt-20 px-4">
         <div className="mb-8 text-center">
-          <div className="bg-white/10 backdrop-blur-lg rounded-xl p-6 border border-white/20">
+          <div className="backdrop-blur-xl bg-white/10 rounded-2xl p-6 border border-white/20 shadow-xl">
             <h1 className="text-3xl font-bold text-white mb-4">
               Quick Add Stock
             </h1>
@@ -29,7 +29,7 @@ const QuickAddStockPage: React.FC = () => {
           </div>
         </div>
 
-        <div className="bg-white/10 backdrop-blur-lg rounded-xl p-6 border border-white/20 shadow-2xl">
+        <div className="backdrop-blur-xl bg-white/10 rounded-2xl p-6 border border-white/20 shadow-xl">
           <DirectStockAddForm 
             onStockAdded={handleStockAdded}
           />
@@ -38,7 +38,7 @@ const QuickAddStockPage: React.FC = () => {
         <div className="mt-8 text-center">
           <button
             onClick={() => navigate('/stocks')}
-            className="text-white hover:text-white/80 font-medium bg-white/10 hover:bg-white/20 px-6 py-2 rounded-lg border border-white/20 backdrop-blur-sm transition duration-200"
+            className="text-slate-300 hover:text-white font-medium bg-black hover:bg-gray-900 px-6 py-2 rounded-lg border border-gray-800 backdrop-blur-sm transition-all duration-200"
           >
             ← Browse stocks instead
           </button>

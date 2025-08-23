@@ -131,10 +131,10 @@ const AdminDashboard: React.FC = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-indigo-500 via-purple-600 to-purple-800 flex items-center justify-center">
-        <div className="text-center text-white">
-          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-white mx-auto mb-4"></div>
-          <p className="text-lg">Loading admin dashboard...</p>
+      <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black flex items-center justify-center">
+        <div className="backdrop-blur-xl bg-white/10 rounded-2xl shadow-xl p-8 border border-white/20 text-center">
+          <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-slate-300 mx-auto mb-4"></div>
+          <p className="text-lg text-white font-medium">Loading admin dashboard...</p>
         </div>
       </div>
     );
@@ -142,13 +142,13 @@ const AdminDashboard: React.FC = () => {
 
   if (error) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-indigo-500 via-purple-600 to-purple-800 flex items-center justify-center">
-        <div className="bg-white/10 backdrop-blur-lg rounded-xl p-8 text-center max-w-md border border-white/20">
-          <h2 className="text-2xl font-bold text-red-400 mb-4">Access Error</h2>
+      <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black flex items-center justify-center">
+        <div className="backdrop-blur-xl bg-white/10 rounded-2xl p-8 text-center max-w-md border border-white/20 shadow-xl">
+          <h2 className="text-2xl font-bold text-red-300 mb-4">Access Error</h2>
           <p className="text-white/80 mb-6">{error}</p>
           <button 
             onClick={() => window.location.reload()}
-            className="bg-blue-500 hover:bg-blue-600 text-white px-6 py-2 rounded-lg font-medium transition-colors"
+            className="bg-black hover:bg-gray-900 text-slate-300 px-6 py-2 rounded-lg font-medium transition-all duration-200 border border-gray-800"
           >
             Retry
           </button>
@@ -158,13 +158,13 @@ const AdminDashboard: React.FC = () => {
   }
 
   return (
-    <div className="h-screen bg-gradient-to-br from-indigo-500 via-purple-600 to-purple-800 text-white flex flex-col">
+    <div className="h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black text-white flex flex-col">
       <div className="p-5 pb-0 flex-shrink-0">
         <AdminNavbar activeTab={activeTab} onTabChange={setActiveTab} />
       </div>
 
       <div className="flex-1 m-4 mt-2 flex flex-col overflow-hidden">
-        <div className="bg-white/10 backdrop-blur-lg rounded-xl border border-white/20 p-4 flex flex-col h-full overflow-hidden">
+        <div className="backdrop-blur-xl bg-white/10 rounded-2xl border border-white/20 p-4 flex flex-col h-full overflow-hidden shadow-xl">
           <div className="flex-1 overflow-y-auto p-2">
             {activeTab === 'portfolios' && (
               <AdminPortfolios 

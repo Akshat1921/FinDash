@@ -89,10 +89,16 @@ const DashboardPage: React.FC = () => {
     return `${parseFloat(percentage) >= 0 ? '+' : ''}${parseFloat(percentage).toFixed(2)}%`;
   };
 
+
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-indigo-500 via-purple-600 to-purple-800 flex items-center justify-center">
-        <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-white"></div>
+      <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-black flex items-center justify-center">
+        <div className="backdrop-blur-xl bg-white/10 rounded-2xl shadow-xl p-8 border border-white/20">
+          <div className="flex flex-col items-center">
+            <div className="w-12 h-12 border-4 border-slate-400 border-t-transparent rounded-full animate-spin mb-4"></div>
+            <p className="text-slate-300 font-medium">Loading Dashboard...</p>
+          </div>
+        </div>
       </div>
     );
   }

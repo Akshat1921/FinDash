@@ -58,11 +58,11 @@ export const AdminStocks: React.FC<AdminStocksProps> = ({
       </div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mb-8">
-        <div className="bg-white/15 backdrop-blur-lg rounded-xl p-5 text-center border border-white/20 hover:bg-white/20 transition-all duration-300">
+        <div className="backdrop-blur-xl bg-white/10 rounded-2xl p-5 text-center border border-white/20 hover:bg-white/15 transition-all duration-300 shadow-xl">
           <h3 className="text-white/80 text-sm font-medium uppercase tracking-wide mb-2">Total Stocks</h3>
           <p className="text-white text-3xl font-bold drop-shadow-lg">{stocks.length}</p>
         </div>
-        <div className="bg-white/15 backdrop-blur-lg rounded-xl p-5 text-center border border-white/20 hover:bg-white/20 transition-all duration-300">
+        <div className="backdrop-blur-xl bg-white/10 rounded-2xl p-5 text-center border border-white/20 hover:bg-white/15 transition-all duration-300 shadow-xl">
           <h3 className="text-white/80 text-sm font-medium uppercase tracking-wide mb-2">Total Value</h3>
           <p className="text-white text-3xl font-bold drop-shadow-lg">
             {formatCurrency(
@@ -70,27 +70,27 @@ export const AdminStocks: React.FC<AdminStocksProps> = ({
             )}
           </p>
         </div>
-        <div className="bg-white/15 backdrop-blur-lg rounded-xl p-5 text-center border border-white/20 hover:bg-white/20 transition-all duration-300">
+        <div className="backdrop-blur-xl bg-white/10 rounded-2xl p-5 text-center border border-white/20 hover:bg-white/15 transition-all duration-300 shadow-xl">
           <h3 className="text-white/80 text-sm font-medium uppercase tracking-wide mb-2">Total P&L</h3>
           <p className={`text-3xl font-bold drop-shadow-lg ${stocks.reduce((sum, s) => sum + parseFloat(s.profitLoss), 0) >= 0 ? 'text-green-400' : 'text-red-400'}`}>
             {formatCurrency(stocks.reduce((sum, s) => sum + parseFloat(s.profitLoss), 0).toString())}
           </p>
         </div>
-        <div className="bg-white/15 backdrop-blur-lg rounded-xl p-5 text-center border border-white/20 hover:bg-white/20 transition-all duration-300">
+        <div className="backdrop-blur-xl bg-white/10 rounded-2xl p-5 text-center border border-white/20 hover:bg-white/15 transition-all duration-300 shadow-xl">
           <h3 className="text-white/80 text-sm font-medium uppercase tracking-wide mb-2">Unique Tickers</h3>
           <p className="text-white text-3xl font-bold drop-shadow-lg">{new Set(stocks.map(s => s.ticker)).size}</p>
         </div>
       </div>
 
       {/* Filters */}
-      <div className="bg-white/10 backdrop-blur-lg rounded-xl p-5 mb-5 border border-white/20 flex gap-5 items-end flex-wrap">
+      <div className="backdrop-blur-xl bg-white/10 rounded-2xl p-5 mb-5 border border-white/20 shadow-xl flex gap-5 items-end flex-wrap">
         <div className="flex flex-col gap-1">
           <label htmlFor="portfolio-filter" className="text-white/80 text-sm font-medium">Portfolio:</label>
           <select 
             id="portfolio-filter"
             value={filterPortfolio} 
             onChange={(e) => setFilterPortfolio(e.target.value)}
-            className="bg-white/10 border border-white/20 text-white px-4 py-2 rounded-lg focus:outline-none focus:bg-white/15 focus:border-white/40 transition-all duration-300"
+            className="backdrop-blur-xl bg-white/10 border border-white/20 text-white px-4 py-2 rounded-lg focus:outline-none focus:bg-white/15 focus:border-white/40 transition-all duration-300"
           >
             <option value="all" className="bg-gray-800 text-white">All Portfolios</option>
             {portfolios.map(portfolio => (
@@ -109,12 +109,12 @@ export const AdminStocks: React.FC<AdminStocksProps> = ({
             value={searchTicker}
             onChange={(e) => setSearchTicker(e.target.value)}
             placeholder="Enter ticker symbol..."
-            className="bg-white/10 border border-white/20 text-white px-4 py-2 rounded-lg focus:outline-none focus:bg-white/15 focus:border-white/40 transition-all duration-300 placeholder-white/50 w-48"
+            className="backdrop-blur-xl bg-white/10 border border-white/20 text-white px-4 py-2 rounded-lg focus:outline-none focus:bg-white/15 focus:border-white/40 transition-all duration-300 placeholder-white/50 w-48"
           />
         </div>
 
         <button 
-          className="bg-white/10 hover:bg-white/20 border border-white/20 text-white px-4 py-2 rounded-lg transition-all duration-300 flex items-center gap-2 font-medium h-fit"
+          className="bg-black hover:bg-gray-900 border border-white/20 text-slate-300 px-4 py-2 rounded-lg transition-all duration-300 flex items-center gap-2 font-medium h-fit"
           onClick={() => {
             setFilterPortfolio('all');
             setSearchTicker('');
@@ -124,54 +124,56 @@ export const AdminStocks: React.FC<AdminStocksProps> = ({
         </button>
       </div>
 
-      <div className="bg-white/10 backdrop-blur-lg rounded-xl overflow-hidden border border-white/20 shadow-xl">
-        <table className="w-full">
-          <thead className="bg-white/10">
-            <tr>
-              <th className="px-6 py-4 text-left text-white font-semibold text-sm uppercase tracking-wide border-b border-white/10">ID</th>
-              <th className="px-6 py-4 text-left text-white font-semibold text-sm uppercase tracking-wide border-b border-white/10">Portfolio Owner</th>
-              <th className="px-6 py-4 text-left text-white font-semibold text-sm uppercase tracking-wide border-b border-white/10">Ticker</th>
-              <th className="px-6 py-4 text-left text-white font-semibold text-sm uppercase tracking-wide border-b border-white/10">Company</th>
-              <th className="px-6 py-4 text-left text-white font-semibold text-sm uppercase tracking-wide border-b border-white/10">Quantity</th>
-              <th className="px-6 py-4 text-left text-white font-semibold text-sm uppercase tracking-wide border-b border-white/10">Purchase Price</th>
-              <th className="px-6 py-4 text-left text-white font-semibold text-sm uppercase tracking-wide border-b border-white/10">Current Price</th>
-              <th className="px-6 py-4 text-left text-white font-semibold text-sm uppercase tracking-wide border-b border-white/10">P&L</th>
-              <th className="px-6 py-4 text-left text-white font-semibold text-sm uppercase tracking-wide border-b border-white/10">% Change</th>
-              <th className="px-6 py-4 text-left text-white font-semibold text-sm uppercase tracking-wide border-b border-white/10">Purchase Date</th>
-              <th className="px-6 py-4 text-left text-white font-semibold text-sm uppercase tracking-wide border-b border-white/10">Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {filteredStocks.map((stock) => (
-              <tr key={stock.id} className="hover:bg-white/5 transition-all duration-300">
-                <td className="px-6 py-4 text-white/90 border-b border-white/5">{stock.id}</td>
-                <td className="px-6 py-4 text-white/90 border-b border-white/5">{stock.portfolio?.user?.fullName || 'N/A'}</td>
-                <td className="px-6 py-4 text-white/90 border-b border-white/5 font-mono font-bold">
-                  {stock.ticker}
-                </td>
-                <td className="px-6 py-4 text-white/90 border-b border-white/5">{stock.companyName}</td>
-                <td className="px-6 py-4 text-white/90 border-b border-white/5">{stock.quantity}</td>
-                <td className="px-6 py-4 text-white/90 border-b border-white/5">{formatCurrency(stock.purchasePrice)}</td>
-                <td className="px-6 py-4 text-white/90 border-b border-white/5">{formatCurrency(stock.currentPrice)}</td>
-                <td className={`px-6 py-4 border-b border-white/5 font-semibold ${parseFloat(stock.profitLoss) >= 0 ? 'text-green-400' : 'text-red-400'}`}>
-                  {formatCurrency(stock.profitLoss)}
-                </td>
-                <td className={`px-6 py-4 border-b border-white/5 font-semibold ${parseFloat(stock.profitLoss) >= 0 ? 'text-green-400' : 'text-red-400'}`}>
-                  {formatPercentage(stock)}
-                </td>
-                <td className="px-6 py-4 text-white/90 border-b border-white/5">{stock.purchaseDate}</td>
-                <td className="px-6 py-4 border-b border-white/5">
-                  <button 
-                    className="bg-red-500/20 hover:bg-red-500/30 border border-red-400/30 text-white px-3 py-1 rounded-lg transition-all duration-300 flex items-center gap-1 text-sm font-medium"
-                    onClick={() => setShowDeleteConfirm(stock.id)}
-                  >
-                    🗑️
-                  </button>
-                </td>
+      <div className="backdrop-blur-xl bg-white/10 rounded-2xl border border-white/20 shadow-xl overflow-hidden">
+        <div className="overflow-x-auto">
+          <table className="w-full min-w-[1200px]">
+            <thead className="backdrop-blur-xl bg-white/10">
+              <tr>
+                <th className="px-6 py-4 text-left text-white font-semibold text-sm uppercase tracking-wide border-b border-white/10 whitespace-nowrap">ID</th>
+                <th className="px-6 py-4 text-left text-white font-semibold text-sm uppercase tracking-wide border-b border-white/10 whitespace-nowrap">Portfolio Owner</th>
+                <th className="px-6 py-4 text-left text-white font-semibold text-sm uppercase tracking-wide border-b border-white/10 whitespace-nowrap">Ticker</th>
+                <th className="px-6 py-4 text-center text-white font-semibold text-sm uppercase tracking-wide border-b border-white/10 whitespace-nowrap">Company</th>
+                <th className="px-6 py-4 text-left text-white font-semibold text-sm uppercase tracking-wide border-b border-white/10 whitespace-nowrap">Quantity</th>
+                <th className="px-6 py-4 text-left text-white font-semibold text-sm uppercase tracking-wide border-b border-white/10 whitespace-nowrap">Purchase Price</th>
+                <th className="px-6 py-4 text-left text-white font-semibold text-sm uppercase tracking-wide border-b border-white/10 whitespace-nowrap">Current Price</th>
+                <th className="px-6 py-4 text-left text-white font-semibold text-sm uppercase tracking-wide border-b border-white/10 whitespace-nowrap">P&L</th>
+                <th className="px-6 py-4 text-left text-white font-semibold text-sm uppercase tracking-wide border-b border-white/10 whitespace-nowrap">% Change</th>
+                <th className="px-6 py-4 text-left text-white font-semibold text-sm uppercase tracking-wide border-b border-white/10 whitespace-nowrap">Purchase Date</th>
+                <th className="px-6 py-4 pr-8 text-center text-white font-semibold text-sm uppercase tracking-wide border-b border-white/10 whitespace-nowrap">Actions</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {filteredStocks.map((stock) => (
+                <tr key={stock.id} className="hover:bg-white/5 transition-all duration-300">
+                  <td className="px-6 py-4 text-white/90 border-b border-white/5 whitespace-nowrap">{stock.id}</td>
+                  <td className="px-6 py-4 text-white/90 border-b border-white/5 whitespace-nowrap">{stock.portfolio?.user?.fullName || 'N/A'}</td>
+                  <td className="px-6 py-4 text-white/90 border-b border-white/5 font-mono font-bold whitespace-nowrap">
+                    {stock.ticker}
+                  </td>
+                  <td className="px-6 py-4 text-white/90 border-b border-white/5 whitespace-nowrap">{stock.companyName}</td>
+                  <td className="px-6 py-4 text-white/90 border-b border-white/5 whitespace-nowrap">{stock.quantity}</td>
+                  <td className="px-6 py-4 text-white/90 border-b border-white/5 whitespace-nowrap">{formatCurrency(stock.purchasePrice)}</td>
+                  <td className="px-6 py-4 text-white/90 border-b border-white/5 whitespace-nowrap">{formatCurrency(stock.currentPrice)}</td>
+                  <td className={`px-6 py-4 border-b border-white/5 font-semibold whitespace-nowrap ${parseFloat(stock.profitLoss) >= 0 ? 'text-green-400' : 'text-red-400'}`}>
+                    {formatCurrency(stock.profitLoss)}
+                  </td>
+                  <td className={`px-6 py-4 border-b border-white/5 font-semibold whitespace-nowrap ${parseFloat(stock.profitLoss) >= 0 ? 'text-green-400' : 'text-red-400'}`}>
+                    {formatPercentage(stock)}
+                  </td>
+                  <td className="px-6 py-4 text-white/90 border-b border-white/5 whitespace-nowrap">{stock.purchaseDate}</td>
+                  <td className="px-6 py-4 pr-8 border-b border-white/5 whitespace-nowrap">
+                    <button 
+                      className="bg-red-600 hover:bg-red-700 border border-red-500 text-white px-4 py-2 rounded-lg transition-all duration-300 flex items-center gap-2 text-sm font-medium shadow-lg whitespace-nowrap"
+                      onClick={() => setShowDeleteConfirm(stock.id)}
+                    >
+                      🗑️ Delete
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
 
       {filteredStocks.length === 0 && (
@@ -183,18 +185,18 @@ export const AdminStocks: React.FC<AdminStocksProps> = ({
       {/* Delete Confirmation Modal */}
       {showDeleteConfirm && (
         <div className="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50">
-          <div className="bg-white/95 backdrop-blur-lg rounded-xl p-8 max-w-md w-full mx-4 border border-white/30 shadow-2xl">
+          <div className="backdrop-blur-xl bg-white/95 rounded-2xl p-8 max-w-md w-full mx-4 border border-white/30 shadow-2xl">
             <h3 className="text-gray-800 text-xl font-semibold mb-4">Confirm Delete</h3>
             <p className="text-gray-600 mb-6 leading-relaxed">Are you sure you want to delete this stock? This action cannot be undone.</p>
             <div className="flex gap-4 justify-end">
               <button 
-                className="bg-red-500 hover:bg-red-600 text-white px-6 py-3 rounded-lg font-semibold transition-all duration-300"
+                className="bg-red-600 hover:bg-red-700 text-white px-6 py-3 rounded-lg font-semibold transition-all duration-300 shadow-lg"
                 onClick={() => handleDelete(showDeleteConfirm!)}
               >
                 Yes, Delete
               </button>
               <button 
-                className="bg-gray-100 hover:bg-gray-200 text-gray-700 border border-gray-300 px-6 py-3 rounded-lg font-semibold transition-all duration-300"
+                className="bg-black hover:bg-gray-900 text-slate-300 border border-gray-300 px-6 py-3 rounded-lg font-semibold transition-all duration-300"
                 onClick={() => setShowDeleteConfirm(null)}
               >
                 Cancel
